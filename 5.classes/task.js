@@ -73,6 +73,32 @@ class DetectiveBook extends Book {
 	}
 }
 
+class Library {
+	constructor(name) {
+		this.name = name;
+		this.books = [];
+	}
+
+	addBook(book) {
+		if (book.state > 30) {
+			this.books.push(book);
+		}
+	}
+
+	findBookBy(type, value) {
+		const findedByParamBook = this.books.find(item => item[type] === value)
+		return !!findedByParamBook ? findedByParamBook : null;
+	}
+
+	giveBookByName(bookName) {
+		const index = this.books.findIndex(book => book.name === bookName);
+		if (index != -1) {
+			return this.books.splice(index, 1)[0];
+		}
+		return null;
+	}
+}
+
 const picnickMagazine = new Magazine(
 	"Пикник на обочине",
 	1972,
